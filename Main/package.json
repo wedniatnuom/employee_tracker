@@ -1,14 +1,14 @@
 {
-  "name": "wordguess",
+  "name": "employee_tracker",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node index",
+    "start": "node server",
     "watch": "nodemon index",
     "test": "jest"
   },
-  "author": "",
+  "author": "Jeremy Johnson",
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.1"
