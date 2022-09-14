@@ -13,7 +13,6 @@ const db = mysql.createConnection(
   );
 
 function runApp() {
-  console.log("test running");
   return inquirer
     .prompt([
     {
@@ -100,14 +99,62 @@ function viewEmployees() {
     });
 };
 
-function addDepartment() {
-    console.log("test 4")
-    runApp()
+async function addDepartment() {
+    await inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "dpt_name",
+            message: "What is the department name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is the department's id #?"
+        }
+    ])
+    .then((answers) => {
+        db.query("INSERT INTO departments SET ?", {
+            dpt_name: answers.dpt_name,
+            id: answers.id,
+        });
+    });
+   runApp();
 };
 
-function addRoll() {
-    console.log("test 5")
-    runApp()
+async function addRoll() {
+    await inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "title",
+            message: "What is the new role?"
+        },
+        {
+            type: "input",
+            name: "dpt_id",
+            message: "Which department id does the role belong to?"
+        },
+        {
+            type: "input",
+            name: "salary",
+            message: "What is the salary of this position?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is this role's id #?"
+        }
+    ])
+    .then((answers) => {
+        db.query("INSERT INTO roles SET ?", {
+            id: answers.id,
+            title: answers.title,
+            dpt_id: answers.dpt_id,
+            salary: answers.salary,
+        });
+    });
+   runApp();
 };
 
 function addEmployee() {
