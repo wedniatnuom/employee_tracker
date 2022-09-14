@@ -51,7 +51,9 @@ function runApp() {
 
 function viewDepartments() {
         const viewDpts = `
-        SELECT * 
+        SELECT 
+             departments.dpt_name AS Department,
+             departments.id AS DepartmentID
         FROM departments`;        
         db.query(viewDpts, (err, dpts) => {
             if (err) {
@@ -65,7 +67,11 @@ function viewDepartments() {
 
 function viewRoles() {
     const viewRoles = `
-    SELECT * 
+    SELECT 
+         roles.title AS JobTitle,
+         roles.id As JobID,
+         departments.dpt_name AS Department,
+         roles.salary AS Salary
     FROM roles 
     JOIN departments 
     ON roles.dpt_id = departments.id`;
@@ -81,13 +87,19 @@ function viewRoles() {
 };
 
 function viewEmployees() {
-    const viewEmplys = `
-    SELECT * 
-    FROM employee 
+    const viewEmplys = 
+  `SELECT 
+        employee.id AS ID,
+        employee.first_name AS FirstName,
+        employee.last_name AS LastName,
+        roles.title AS JobTitle,
+        roles.salary AS Salary,
+        departments.dpt_name AS Department
+    FROM employee
     JOIN roles 
     ON employee.role_id = roles.id
     JOIN departments
-    ON roles.dpt_id = departments.id`
+    ON roles.dpt_id = departments.id`;
 
     db.query(viewEmplys, (err, emplys) => {
         if (err) {
