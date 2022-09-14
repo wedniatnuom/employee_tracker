@@ -1,5 +1,16 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql2");
+const express = require('express');
+
+const db = mysql.createConnection(
+    {
+      host: 'localhost',
+      user: 'root',
+      password: 'password',
+      database: 'department_db'
+    },
+    console.log(`Connected to the departments_db database.`)
+  );
 
 function runApp() {
   console.log("test running");
@@ -24,7 +35,7 @@ function runApp() {
     if (answers.options === "View all departments") {
         viewDepartments();
     } else if (answers.options === "View all roles") {
-        viewRolls();
+        viewRoles();
     } else if (answers.options === "View all employees") {
         viewEmployees();
     } else if (answers.options === "Add a department") {
@@ -40,18 +51,53 @@ function runApp() {
 }
 
 function viewDepartments() {
-    console.log("test 1")
-    runApp()
+        const viewDpts = `
+        SELECT * 
+        FROM departments`;        
+        db.query(viewDpts, (err, dpts) => {
+            if (err) {
+                console.log(err);
+                 return;
+              };
+              console.table(dpts);
+              runApp();
+        });
 };
 
-function viewRolls() {
-    console.log("test 2")
-    runApp()
+function viewRoles() {
+    const viewRoles = `
+    SELECT * 
+    FROM roles 
+    JOIN departments 
+    ON roles.dpt_id = departments.id`;
+
+    db.query(viewRoles, (err, roles) => {
+        if (err) {
+            console.log(err);
+             return;
+          };
+          console.table(roles);
+          runApp();
+    });
 };
 
 function viewEmployees() {
-    console.log("test 3")
-    runApp()
+    const viewEmplys = `
+    SELECT * 
+    FROM employee 
+    JOIN roles 
+    ON employee.role_id = roles.id
+    JOIN departments
+    ON roles.dpt_id = departments.id`
+
+    db.query(viewEmplys, (err, emplys) => {
+        if (err) {
+            console.log(err);
+             return;
+          };
+          console.table(emplys);
+          runApp();
+    });
 };
 
 function addDepartment() {
