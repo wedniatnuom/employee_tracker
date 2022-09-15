@@ -96,6 +96,7 @@ function viewEmployees() {
     const viewEmplys = 
   `SELECT 
         employee.id AS ID,
+        employee.manager_id AS ManagerId,
         employee.first_name AS FirstName,
         employee.last_name AS LastName,
         roles.title AS JobTitle,
@@ -185,7 +186,7 @@ async function addEmployee() {
             {
                 type: "input",
                 name: "role",
-                message: "What is their role?"
+                message: "What is the id number of their role?"
             },
             {
                 type: "input",

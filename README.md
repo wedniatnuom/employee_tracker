@@ -1,0 +1,32 @@
+
+# Employee Tracker
+
+## Description
+
+- Project Motivation: To gain a better understanding of using MySQL.
+
+- Purpose: The course requirements were to build a command-line application that accepts user input.
+
+- What did it solve: The application allows you to keep an organized database of employees. It helps you view their role, salary, department, and managaer all in one easy to query place.
+
+- What I learned along the way: I was able to gain an understanding of the basic syntax of MySQL and what it is doing. Going in to this project I could copy segments of the syntax from other locations, but I wasn't able to see the "why" of how they were functioning. The assignment also allowed me to play with Inquirer a bit more to the point where I feel comfortable with it.
+
+## Installation
+
+Steps required to get off the ground: When opening the file you will want to start with an " npm install". This will ensure that you have inquirer and MySQL to use. Next, you will want to change the password in the server.js file on line 9. It has a placeholder password of "password" currently. You will need it to be the same as your own MySQL password. Finally, you will want to run "node server.js". This will start the application, and you can follow the prompts from there.
+
+## Usage
+
+How to use: * Insert link to video *
+
+## Credits
+
+NA
+
+## Licence
+
+N/A
+
+## Features
+
+NA
