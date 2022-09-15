@@ -40,7 +40,7 @@ function runApp() {
     } else if (answers.options === "Add a department") {
         addDepartment();
     } else if (answers.options === "Add a role") {
-        addRoll();
+        addRole();
     } else if (answers.options === "Add an employee") {
         addEmployee();
     } else if (answers.options === "Update an employee role") {
@@ -48,6 +48,8 @@ function runApp() {
     } return;
   }) 
 }
+
+// Function to view all departments in the database:
 
 function viewDepartments() {
         const viewDpts = `
@@ -64,6 +66,8 @@ function viewDepartments() {
               runApp();
         });
 };
+
+// Function to view all roles in the database:
 
 function viewRoles() {
     const viewRoles = `
@@ -85,6 +89,8 @@ function viewRoles() {
           runApp();
     });
 };
+
+// Function to view all employees in the database:
 
 function viewEmployees() {
     const viewEmplys = 
@@ -111,6 +117,8 @@ function viewEmployees() {
     });
 };
 
+// Function to add a new department:
+
 async function addDepartment() {
     await inquirer
     .prompt([
@@ -119,22 +127,18 @@ async function addDepartment() {
             name: "dpt_name",
             message: "What is the department name?"
         },
-        {
-            type: "input",
-            name: "id",
-            message: "What is the department's id #?"
-        }
     ])
     .then((answers) => {
         db.query("INSERT INTO departments SET ?", {
             dpt_name: answers.dpt_name,
-            id: answers.id,
         });
     });
    runApp();
 };
 
-async function addRoll() {
+// Function to add a new role:
+
+async function addRole() {
     await inquirer
     .prompt([
         {
@@ -152,15 +156,9 @@ async function addRoll() {
             name: "salary",
             message: "What is the salary of this position?"
         },
-        {
-            type: "input",
-            name: "id",
-            message: "What is this role's id #?"
-        }
     ])
     .then((answers) => {
         db.query("INSERT INTO roles SET ?", {
-            id: answers.id,
             title: answers.title,
             dpt_id: answers.dpt_id,
             salary: answers.salary,
@@ -169,14 +167,73 @@ async function addRoll() {
    runApp();
 };
 
-function addEmployee() {
-    console.log("test 6")
-    runApp()
-};
+// Function to add a new employee:
 
-function updateEmployee() {
-    console.log("test 7")
-    runApp()
+async function addEmployee() {
+        await inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "firstName",
+                message: "What is the employee's first name?"
+            },
+            {
+                type: "input",
+                name: "lastName",
+                message: "What is the employee's last name?"
+            },
+            {
+                type: "input",
+                name: "role",
+                message: "What is their role?"
+            },
+            {
+                type: "input",
+                name: "manager",
+                message: "What is their manager's employee ID#?"
+            },
+        ])
+        .then((answers) => {
+            db.query("INSERT INTO employee SET ?", {
+                first_name: answers.firstName,
+                last_name: answers.lastName,
+                role_id: answers.role,
+                manager_id: answers.manager,
+            });
+        });
+       runApp();
+    };
+
+
+// Function to update and employee:
+
+async function updateEmployee() {
+    await inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "getId",
+            message: "What is the ID# of the employee you wish to update?"
+        },
+        {
+            type: "input",
+            name: "role",
+            message: "What is the employee's role?"
+        },
+        {
+            type: "input",
+            name: "manager",
+            message: "What is the id# of the employee's manager (NULL if they are moving into a management position)?"
+        }
+    ]).then((answers) => {
+        const sql1 = "UPDATE employee SET role_id = ? WHERE id = ?"
+        const sql2 = "UPDATE employee SET manager_id = ? WHERE id = ?"
+        const roleParams = [answers.role,answers.getId];
+        const managerParams = [answers.manager,answers.getId];
+         db.query(sql1, roleParams);
+         db.query(sql2, managerParams);
+    });
+    runApp();
 };
 
 runApp();
