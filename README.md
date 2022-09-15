@@ -17,8 +17,9 @@ Steps required to get off the ground: When opening the file you will want to sta
 
 ## Usage/Links
 
-How to use: Follow this link to watch a demo video: https://drive.google.com/file/d/19ukQ4ywomF-RzU89Sya8bsA0V38-SpDG/view?usp=sharing
-GitHub: https://github.com/wedniatnuom/employee_tracker
+- How to use: Follow this link to watch a demo video: https://drive.google.com/file/d/19ukQ4ywomF-RzU89Sya8bsA0V38-SpDG/view?usp=sharing
+
+- GitHub: https://github.com/wedniatnuom/employee_tracker
 
 ## Credits
 
