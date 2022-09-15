@@ -13,11 +13,12 @@
 
 ## Installation
 
-Steps required to get off the ground: When opening the file you will want to start with an " npm install". This will ensure that you have inquirer and MySQL to use. Next, you will want to change the password in the server.js file on line 9. It has a placeholder password of "password" currently. You will need it to be the same as your own MySQL password. Finally, you will want to run "node server.js". This will start the application, and you can follow the prompts from there.
+Steps required to get off the ground: When opening the file you will want to start with an " npm install". This will ensure that you have inquirer and MySQL to use. Next, you will want to change the password in the server.js file on line 9. It has a placeholder password of "password" currently. You will need it to be the same as your own MySQL password. Then, you will want to use "mysql -u root -p" to start MySQL, and enter your password. You will want to then do the commands "source ./db/schema.sql" and "source ./db/seeds.sql". You can change the seeds.sql file to reflect your own employees and company, or leave it as is for testing. If you want to build your own team and departments from the application then you don't need to source the seeds.sql file. From there you can quit MySQL. The server.js file will reopen it when necessary. Finally, you will want to run "node server.js". This will start the application, and you can follow the prompts from there.
 
-## Usage
+## Usage/Links
 
-How to use: * Insert link to video *
+How to use: Follow this link to watch a demo video: https://drive.google.com/file/d/19ukQ4ywomF-RzU89Sya8bsA0V38-SpDG/view?usp=sharing
+GitHub: https://github.com/wedniatnuom/employee_tracker
 
 ## Credits
 
